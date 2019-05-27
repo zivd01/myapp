@@ -1,13 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "mayapp.fullname" . }}
+  name: mayapp
   labels:
-    app: {{ template "myapp.name" . }}
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-    name: {{ template "myapp.fullname" . }}
+    app: myapp
+    name: myapp
 spec:
   replicas: 3
   selector:
