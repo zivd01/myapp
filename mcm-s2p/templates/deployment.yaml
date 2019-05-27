@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "mayapp.fullname" . }}
+  labels:
+    app: {{ template "myapp.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    name: {{ template "myapp.fullname" . }}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      name: myapp
+      labels:
+        app: myapp
+        release: 1.0
+    spec:
+      containers:
+      - name: myapp
+        image: wardviaene/k8s-demo
+        ports:
+        - containerPort: 3000
